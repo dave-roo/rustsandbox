@@ -1,3 +1,6 @@
 fn main() {
-    println!("Hello, world")
+    println!("{subject} {verb} {object}",
+                 object="cow",
+                 subject="moon",
+                 verb="jumps over");
 }
