@@ -1,47 +1,43 @@
+use std::fmt; 
+
 #[derive(Debug)]
-struct Person<'a> {
-    name: &'a str,
-    age: u8
+struct MinMax(i64, i64);
+
+impl fmt::Display for MinMax {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "({}, {})", self.0, self.1)
+    }
+}
+
+#[derive(Debug)]
+struct Point2D {
+    x: f64,
+    y: f64,
+}
+
+impl fmt::Display for Point2D {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "x: {}, y: {}", self.x, self.y)
+    }
 }
 
 fn main() {
+    let minmax = MinMax(0, 14);
 
-    let name = "Peter";
-    let age = 27;
-    let peter = Person { name, age };
+    println!("Compare structures:");
+    println!("Display: {}", minmax);
+    println!("Debug: {:?}", minmax);
 
-    // Pretty print
-    println!("{:#?}", peter);
+    let big_range =   MinMax(-300, 300);
+    let small_range = MinMax(-3, 3);
 
-    println!("{} days", 31);
+    println!("The big range is {big} and the small is {small}",
+             small = small_range,
+             big = big_range);
 
-    println!("{0}, this is {1}. {1}, this is {0}", "Alice", "Bob");
+    let point = Point2D { x: 3.3, y: 7.2 };
 
-    println!("{subject} {verb} {object}",
-             object="the lazy dog",
-             subject="the quick brown fox",
-             verb="jumps over");
-
-    println!("{} of {:b} people know binary, the other half doesn't", 1, 2);
-    println!("{number:>width$}", number=1, width=6);
-    println!("{number:>0width$}", number=1, width=6);
-
-    println!("My name is {0}, {1} {0}", "Bond", "James");
-
-
-    #[derive(Debug)]
-    struct Structure(i32);
-
-    #[derive(Debug)]
-    struct Deep(Structure);
-
-    println!("{:?} months in a year.", 12);
-    println!("{1:?} {0:?} is the {actor:?} name.",
-             "Slater",
-             "Christian",
-             actor="actor's");
-
-    println!("Now {:?} will print!", Structure(3));
-    println!("Now {:?} will print!", Deep(Structure(7)));
-
+    println!("Compare points:");
+    println!("Display: {}", point);
+    println!("Debug: {:?}", point);
 }
