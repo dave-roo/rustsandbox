@@ -25,5 +25,8 @@
     <Folder Include="src\" />
     <Code Include="src\main.rs" />
   </ItemGroup>
+  <ItemGroup>
+    <File Include="src\vec_array1.rs" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\VisualRust\VisualRust.Rust.targets" />
 </Project>
