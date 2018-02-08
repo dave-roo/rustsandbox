@@ -21,4 +21,10 @@ fn main() {
         index = index + 1;
     }
 
+    //or
+
+        for element in a.iter() {
+        println!("the value is: {}", element);
+    }
+
 }
