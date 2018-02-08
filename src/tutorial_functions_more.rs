@@ -2,8 +2,13 @@
     5
 }
 
-fn main() {
-    let x = five();
+fn plus_one(x: i32) -> i32 {
+    x + 1
+}
 
-    println!("The value of x is: {}", x);
+fn main() {
+    let x1 = five();
+    let x2 = plus_one(x1);
+
+    println!("The value of x is: {}", x2);
 }
