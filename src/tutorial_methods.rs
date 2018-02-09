@@ -59,6 +59,19 @@ impl Pair {
     }
 }
 
+pub trait Iterator {
+    // The type being iterated over.
+    type Item;
+
+    // `any` takes `&mut self` meaning the caller may be borrowed
+    // and modified, but not consumed.
+    fn any<F>(&mut self, f: F) -> bool where
+        // `FnMut` meaning any captured variable may at most be
+        // modified, not consumed. `Self::Item` states it takes
+        // arguments to the closure by value.
+        F: FnMut(Self::Item) -> bool {}
+}
+
 fn main() {
     let rectangle = Rectangle {
 
@@ -107,6 +120,40 @@ fn main() {
 
     println!("{}", contains(&1));
     println!("{}", contains(&3));
+
+
+	fn apply<F>(f: F) where
+		F: Fn() {
+		f();
+	}
+
+    let test = 7;
+
+    let print = || println!("{}", test);
+
+    apply(print);
+	
+	fn create_fn() -> Box<Fn()> {
+		let text = "Fn".to_owned();
+
+		Box::new(move || println!("This is a: {}", text))
+	}
+
+	fn create_fnmut() -> Box<FnMut()> {
+		let text = "FnMut".to_owned();
+
+		Box::new(move || println!("This is a: {}", text))
+	}
+
+    let fn_plain = create_fn();
+    let mut fn_mut = create_fnmut();
+
+    fn_plain();
+    fn_mut();
+	
+	
 	
 }
+
+	
 
