@@ -12,6 +12,8 @@ pub fn indirect_access() {
     private_function();
 }
 
+
+
 //$ rustc --crate-type=lib rary.rs
 //$ ls lib*
 
