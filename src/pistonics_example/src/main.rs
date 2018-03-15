@@ -2,14 +2,13 @@ extern crate piston;
 extern crate graphics;
 extern crate opengl_graphics;
 extern crate piston_window;
-
 extern crate catchit;
 
 use catchit::{Engine, Object, CollisionShape, ObstacleKind, State, Extent};
 use catchit::Scalar as CatchitScalar;
 
 use piston_window::*;
-use opengl_graphics::glyph_cache::GlyphCache;
+use opengl_graphics::GlyphCache;
 use opengl_graphics::GlGraphics;
 use graphics::character::CharacterCache;
 use graphics::math::Scalar;
@@ -208,9 +207,7 @@ fn main() {
     };
 
 
-    let mut events = window.events()
-        .max_fps(UPDATES_PER_SECOND)
-        .ups(UPDATES_PER_SECOND);
+    let mut events = window.events().max_fps(UPDATES_PER_SECOND).ups(UPDATES_PER_SECOND);
 
     while let Some(e) = events.next(&mut window) {
         if let Some(pos) = e.mouse_cursor_args() {
