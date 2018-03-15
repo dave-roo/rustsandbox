@@ -173,7 +173,7 @@ fn compute_field(width: u16, height: u16, text_height: Scalar) -> Extent {
 fn text_width(cache: &mut GlyphCache<'static>, text: &str) -> Scalar {
     let mut w = 0.0;
     for c in text.chars() {
-        w += cache.character(FONT_SIZE, c).width();
+        w += 5;
     }
     w
 }
@@ -188,9 +188,8 @@ fn main() {
 
     let mut app = {
         let gl = GlGraphics::new(OpenGL::V3_2);
-        let mut glyphs = GlyphCache::from_bytes(include_bytes!("../res/FiraMono-Bold.ttf"))
-            .unwrap();
-        let text_height = glyphs.character(FONT_SIZE, 'S').top();
+        let mut glyphs = GlyphCache::from_bytes(("../res/FiraMono-Bold.ttf")).unwrap();
+        let text_height = 5;
         let field = compute_field(WIDTH, HEIGHT, text_height);
 
         // Create a new game and run it.
